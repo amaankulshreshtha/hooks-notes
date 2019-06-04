@@ -1,68 +1,82 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Hooks Notes
 
-## Available Scripts
+## Conversions
 
-In the project directory, you can run:
+---
 
-### `npm start`
+### useState
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```javascript
+state + setState(...) = useState(...)
+```
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+---
 
-### `npm test`
+### useEffect
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. This method will not be called in a synchronous manner
+2. This is called **AFTER** the component has rendered
+3. It's used to manage any side effects
 
-### `npm run build`
+#### componentDidMount
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```javascript
+componentDidMount() {...} = useEffect(()=> {...}, [])
+```
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+The `[]` argument above is **very important**.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. This is an `dependencies array`
+2. This tells the `useEffect` hook to execute on after render when any of the mentioned dependencies change
+3. If there are no dependencies inside the `dependencies array`, this means that there are no dependencies that need to be tracked, hence run only one time after the first render. _(as per the lifecycle explanation, `componentDidMount` runs only one time, i.e after the first render)_
+4. If the `array argument` is not mentioned, then it means that this function will execute after every render, which can be **dangerous**. _(Eg: https://youtu.be/-MlNBTSg_Ww?t=2251)_
 
-### `npm run eject`
+#### componentDidUpdate
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```javascript
+/**
+ * @type {array} dependencies that expect a change in value
+ */
+let dependencies = [];
+componentDidUpdate() {...} = useEffect(() => {...}, dependencies)
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+As mentioned in 2.) above, it will check if the dependency has been updated, and will execute only if it has been updated.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#### componentWillUnmount
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```javascript
+componentWillUnmount() {...} = useEffect(()=> {
+  // other code
+  return () => {...}
+  }, dependencies)
+```
 
-## Learn More
+1. `useEffect` callback function can return another function. This function is always executes right before `useEffect` runs the next time. So it acts as a cleanup.
+2. We can either return a value or return nothing
+3. If you want the `useEffect` to run a cleanup only one time, then write the below
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```javascript
+useEffect(()=> {
+  // other code
+  return () => {...}
+  }, [])
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The above will only execute once. Since it is not watching for any dependencies, it will not execute after each render.
+As per 1.) above, this means that the `return function` will only execute one time, before the first render of the component _(as a cleanup)_
 
-### Code Splitting
+---
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Sharing stateful logic between components
 
-### Analyzing the Bundle Size
+### Custom hooks
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+IMO the best way to approach:
 
-### Making a Progressive Web App
+1. write individual hooks for each file
+2. See what is common and then separate that common part and make it into a custom hook
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+---
 
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+**Add console statements to inspect and know more about lifecycle of hooks**
