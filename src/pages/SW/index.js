@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import CharPicker from '../../components/CharPicker';
 import Character from '../../components/Character';
 
-const App = props => {
+const SWPage = props => {
 	const [selectedCharacter, setSelectedCharacter] = useState(1);
 	const [side, setSide] = useState('light');
 	const [destroyed, setDestroyed] = useState(false);
@@ -43,4 +43,4 @@ const App = props => {
 	return content;
 };
 
-export default App;
+export default SWPage;
