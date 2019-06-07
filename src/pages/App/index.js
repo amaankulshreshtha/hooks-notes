@@ -4,6 +4,7 @@ import Nav from '../../components/Nav';
 import Homepage from '../Homepage';
 import TodoPage from '../Todos';
 import SWPage from '../SW';
+import RecipeBoxPage from '../RecipeBox';
 
 const App = () => {
 	return (
@@ -14,6 +15,7 @@ const App = () => {
 					<Route exact path='/' component={Homepage} />
 					<Route path='/todo' component={TodoPage} />
 					<Route path='/sw' component={SWPage} />
+					<Route path='/recipe' component={RecipeBoxPage} />
 				</Switch>
 			</Router>
 		</div>

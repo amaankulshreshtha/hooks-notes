@@ -1,0 +1,179 @@
+.recipe-app {
+	padding: 20px;
+}
+
+.recipe-app-heading {
+	text-align: center;
+}
+
+.recipe-list-group {
+	margin-bottom: 80px;
+	padding: 40px 80px;
+	border-radius: 8px;
+	box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-header {
+	display: flex;
+	justify-content: flex-start;
+}
+
+.recipe-name {
+	font-size: 40px;
+	margin-bottom: 15px;
+}
+
+.btn-primary {
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	margin-left: 20px;
+	padding: 15px 20px;
+	text-transform: uppercase;
+	background: white;
+	color: black;
+	border: solid 1px black;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.btn-primary::after {
+	content: '';
+	display: block;
+	width: 5px;
+	height: 5px;
+	border-top: solid 1px black;
+	border-left: solid 1px black;
+	transform: rotate(-135deg);
+	margin-left: 10px;
+	transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.btn-primary:hover {
+	color: white;
+	background: black;
+	transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.btn-primary:hover::after {
+	border-top-color: white;
+	border-left-color: white;
+	transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus,
+.btn-primary:visited {
+	outline: none;
+	box-shadow: 0;
+}
+
+.ingredient-list {
+	margin: 25px 0;
+	padding: 0;
+	list-style: none;
+}
+
+.ingredient-list-item {
+	padding: 10px;
+	border: solid 1px rgba(0, 0, 0, 0.1);
+}
+
+.cta-wrapper {
+	display: flex;
+	width: 200px;
+	justify-content: space-between;
+	margin: 35px 0;
+}
+
+.cta-button {
+	padding: 0 20px;
+	height: 40px;
+}
+
+.cta-delete {
+	justify-content: flex-start;
+	width: 100px;
+	color: rgba(213, 17, 31, 0.728);
+	border-color: rgba(213, 17, 31, 0.728);
+}
+
+.cta-delete:hover {
+	background: rgba(213, 17, 31, 0.728);
+}
+
+.cta-delete::before,
+.cta-delete::after {
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	content: '';
+	display: block;
+	width: 1px;
+	height: 10px;
+	border: 0;
+	margin: 0 10px;
+	transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+	background: rgba(213, 17, 31, 0.728);
+}
+
+.cta-delete::before {
+	transform: translateY(-50%) rotate(45deg);
+}
+
+.cta-delete::after {
+	transform: translateY(-50%) rotate(-45deg);
+}
+
+.cta-delete:hover::before,
+.cta-delete:hover::after {
+	background: white;
+}
+
+.form-primary {
+	padding: 20px 40px;
+	border: solid 1px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+}
+
+.form-primary h2 {
+	margin-bottom: 40px;
+}
+
+.form-primary label {
+	display: block;
+	margin-bottom: 7.5px;
+}
+
+.form-primary input {
+	margin-bottom: 30px;
+}
+
+.input-primary {
+	width: 100%;
+	padding: 20px;
+	font-size: 16px;
+	border-radius: 8px;
+	border: solid 1px rgba(0, 0, 0, 0.2);
+	transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.input-primary:focus {
+	border: solid 1px black;
+	outline: none;
+	transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.recipe-form-button {
+	margin: 0;
+	padding: 0 20px;
+	height: 40px;
+}
+
+.recipe-edit-button::after {
+	transform: rotate(135deg);
+}

@@ -12,6 +12,9 @@ const Homepage = () => (
 			<Link className='list-item' to='/sw'>
 				<li>SW App</li>
 			</Link>
+			<Link className='list-item' to='/recipe'>
+				<li>Recipe Box App</li>
+			</Link>
 		</ul>
 	</div>
 );
